@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+      "baseUrl": ".",
+      "paths": {
+        "@/components/*": ["components/*"],
+        "@/molecules/*": ["components/molecules/*"],
+        "@/organisms/*": ["components/organisms/*"],
+        "@/config/*": ["config/*"],
+        "@/utils/*": ["utils/*"],
+        "@/data/*": ["public/data/*"]
+      }
+    },
+    "exclude": ["node_modules", "public"]
+  }
+  
