@@ -37,3 +37,15 @@ export const useToggle = (
   }, []);
   return [state, toggle, toggleOff];
 };
+
+export const handleDownload = (htmlContent: string,fileName:string) => {
+  const blob = new Blob([htmlContent], { type: "text/html" });
+  const url = window.URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = fileName || "Signature.html";
+  document.body.appendChild(a);
+  a.click();
+  window.URL.revokeObjectURL(url);
+  document.body.removeChild(a);
+};
