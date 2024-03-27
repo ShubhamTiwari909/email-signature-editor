@@ -16,3 +16,9 @@ export const WRSchema = baseSchema
     source: yup.string().required("Source is required"),
   })
   .required();
+
+export const LEXSchema = baseSchema
+  .shape({
+    linkedin: yup.string().required("Linkedin is required"),
+  })
+  .required();

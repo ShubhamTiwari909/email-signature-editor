@@ -6,7 +6,8 @@ export type RegisterNameTypes =
   | "name"
   | "email"
   | "phone"
-  | "bookingLink";
+  | "bookingLink"
+  | "linkedin";
 
 export type InputsTypes = {
   label: string;
@@ -28,6 +29,10 @@ export type WRInputGroupTypes = InputsTypes & InputInteractiveTypes & {
   register: UseFormRegister<Brands>;
 };
 
+export type LEXInputGroupTypes = InputsTypes & InputInteractiveTypes & {
+  register: UseFormRegister<Brands>;
+};
+
 export type Data = {
   name: string;
   position: string;
@@ -41,6 +46,10 @@ export type WR = Data & {
   source: string;
 };
 
+export type LEX = Data & {
+  linkedin: string
+}
+
 export type InputTypes = InputsTypes;
-export type InputGroupTypes = SFCAInputGroupTypes | WRInputGroupTypes;
-export type Brands = Data | WR;
+export type InputGroupTypes = SFCAInputGroupTypes | WRInputGroupTypes | LEXInputGroupTypes;
+export type Brands = Data | WR | LEX;
