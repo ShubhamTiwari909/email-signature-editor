@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Input } from "@/components/ui/input";
 
 type DragAndDrop = {
   fileName: string;
@@ -65,14 +66,14 @@ const DragAndDrop = ({
       onDrop={handleDrop}
     >
       <div className="flex justify-center items-center">
-        <input
+        <Input
+          id="picture"
           type="file"
           accept=".html"
           onChange={(e) => {
             const file = e.target.files?.[0] as File | undefined;
             handleFileChange(file as File);
           }}
-          className="w-[112px] mr-2 text-sm text-slate-500 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-sky-100 file:text-sky-700 hover:file:bg-sky-100"
         />
         <p className="text-slate-500">
           {dragging ? "Dropping a file..." : "or Drop a file"}

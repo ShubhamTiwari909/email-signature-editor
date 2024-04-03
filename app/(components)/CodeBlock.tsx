@@ -3,6 +3,7 @@ import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
 import jsx from "react-syntax-highlighter/dist/esm/languages/prism/jsx";
 import prism from "react-syntax-highlighter/dist/esm/styles/prism/prism";
 import pretty from "pretty";
+import { Button } from "@/components/ui/button";
 
 type CodeBlockProps = {
   markup: string;
@@ -48,12 +49,12 @@ export function CodeBlock(props: CodeBlockProps) {
 
   return (
     <div role="presentation" className="relative">
-      <button
+      <Button
         className="bg-sky-500 hover:bg-sky-700 px-5 py-2 text-sm leading-5 rounded-full font-semibold mt-4 text-white absolute right-4 top-4 flex items-center gap-2"
         onClick={handleClick}
       >
         <span>{copy ? "Copied" : "Copy"}</span>
-      </button>
+      </Button>
       <SyntaxHighlighter language="html" style={prism} showLineNumbers={true}>
         {prettiedMarkup}
       </SyntaxHighlighter>

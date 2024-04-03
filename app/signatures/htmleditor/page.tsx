@@ -9,6 +9,8 @@ import DragAndDrop from "@/app/(components)/HtmlEditor/DragAndDrop";
 import Editor from "@/app/(components)/HtmlEditor/Editor";
 import Preview from "@/app/(components)/HtmlEditor/Preview";
 
+import { Button } from "@/components/ui/button";
+
 const HTMLFileEditor: React.FC = () => {
   const [htmlContent, setHtmlContent] = useState<string>("");
   const [iframeContent, setIframeContent] = useState<string>("");
@@ -45,12 +47,9 @@ const HTMLFileEditor: React.FC = () => {
   return (
     <section className="container mx-auto pb-10">
       <div className="py-4">
-        <Link
-          href="/"
-          className="inline-block px-4 py-2 bg-sky-500 text-slate-100 rounded-lg absolute top-2 left-2"
-        >
-          Back to homepage
-        </Link>
+        <Button variant="primary" className="absolute top-2 left-2">
+          <Link href="/">Back to homepage</Link>
+        </Button>
         <h1 className="text-center flex-1 text-3xl font-bold">HTML EDITOR</h1>
       </div>
       <DragAndDrop

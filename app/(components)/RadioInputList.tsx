@@ -1,3 +1,4 @@
+import { Input } from "@/components/ui/input";
 import { useSignatureStore } from "@/store/store";
 import { Brands, RegisterNameTypes } from "@/store/types";
 import React from "react";
@@ -25,7 +26,7 @@ const RadioInputList = ({
             key={label}
             className="flex gap-x-2 border border-slate-400 has-[:checked]:border-sky-500 has-[:checked]:border-2 rounded-lg px-4 py-2 cursor-pointer relative"
           >
-            <input type="radio" className="appearance-none before:rounded-full before:bg-slate-400 before:checked:bg-sky-500 before:absolute before:w-2 before:h-2 before:top-1/2 before:left-2 before:-translate-y-1/2" value={value} {...register(registerName)} onChange={() => setData({ ...data, [registerName]: value })} />
+            <Input type="radio" className="appearance-none before:rounded-full before:bg-slate-400 before:checked:bg-sky-500 before:absolute before:w-2 before:h-2 before:top-1/2 before:left-2 before:-translate-y-1/2" value={value} {...register(registerName)} onChange={() => setData({ ...data, [registerName]: value })} />
             {label}
           </label>
         ))}
