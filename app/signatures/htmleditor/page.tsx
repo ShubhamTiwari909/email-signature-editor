@@ -1,14 +1,15 @@
 "use client";
 import React, { useState, ChangeEvent, useEffect } from "react";
 import Link from "next/link";
-import { useSearchParams, useRouter, usePathname } from "next/navigation";
-import AceEditor from "react-ace";
-import "ace-builds/src-noconflict/theme-twilight";
-import "ace-builds/src-noconflict/mode-html";
-import "ace-builds/src-noconflict/ext-language_tools";
-import { initialData } from "@/store/store";
-import WellReceivedSignatures from "@/app/SignatureHTML/WellReceivedSignatures";
+import { useSearchParams, useRouter } from "next/navigation";
+import InitialTemplate from "../InitialTemplate";
 import pretty from "pretty";
+import DragAndDrop from "@/app/(components)/HtmlEditor/DragAndDrop";
+import Editor from "@/app/(components)/HtmlEditor/Editor";
+import Preview from "@/app/(components)/HtmlEditor/Preview";
+import { injectScriptToTemplate } from "@/lib/utils";
+
+import { Button } from "@/components/ui/button";
 
 const HTMLFileEditor: React.FC = () => {
   const [htmlContent, setHtmlContent] = useState<string>("");
@@ -32,8 +33,7 @@ const HTMLFileEditor: React.FC = () => {
       const content = query.get("htmlContent") as string;
       setHtmlMarkUp(content);
     } else {
-      const data = initialData["wr"];
-      setHtmlMarkUp(WellReceivedSignatures(data));
+      setHtmlMarkUp(injectScriptToTemplate(InitialTemplate()));
     }
     router.replace("/signatures/htmleditor");
   }, []);
@@ -72,46 +72,25 @@ const HTMLFileEditor: React.FC = () => {
   return (
     <section className="container mx-auto">
       <div className="py-4">
-        <Link
-          href="/"
-          className="inline-block px-4 py-2 bg-sky-500 text-slate-100 rounded-lg absolute top-2 left-2"
-        >
-          Back to homepage
-        </Link>
-        <h1 className="text-center flex-1 text-3xl font-bold">HTML EDITOR</h1>
+        <Button variant="primary" className="absolute top-2 left-2">
+          <Link href="/">Back to homepage</Link>
+        </Button>
+        <h1 className="text-center flex-1 text-3xl font-bold">
+          Tailwind CSS EDITOR
+        </h1>
       </div>
-      <div className="flex justify-center py-4">
-        <input
-          type="file"
-          accept=".html"
-          onChange={handleFileChange}
-          className="text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-sky-100 file:text-sky-700 hover:file:bg-sky-100"/>
-      </div>
-      <div className="flex justify-between items-start gap-6">
-        <AceEditor
-          mode="html"
-          theme="twilight" // Set the theme here
-          fontSize={14}
-          lineHeight={18}
-          showPrintMargin={true}
-          showGutter={true}
-          highlightActiveLine={true}
-          value={htmlContent}
-          onChange={(newValue) => {
-            handleChange(newValue);
-          }}
-          name="HTML-EDITOR"
-          editorProps={{ $blockScrolling: true }}
-          setOptions={{
-            enableBasicAutocompletion: true,
-            enableLiveAutocompletion: true,
-            showLineNumbers: true,
-            tabSize: 2,
-          }}
-          style={{
-            width: "600px",
-            height: "500px",
-          }}
+      <DragAndDrop
+        fileName={fileName}
+        setHtmlContent={setHtmlContent}
+        setIframeContent={setIframeContent}
+        setFileName={setFileName}
+      />
+      <div className="flex items-start gap-6">
+        <Editor htmlContent={htmlContent} handleChange={handleChange} />
+        <Preview
+          iframeContent={iframeContent}
+          htmlContent={htmlContent}
+          fileName={fileName}
         />
         <div className="w-1/2">
           <iframe

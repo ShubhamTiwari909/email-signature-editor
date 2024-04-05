@@ -11,14 +11,3 @@ export const baseSchema = yup
   })
   .required();
 
-export const WRSchema = baseSchema
-  .shape({
-    source: yup.string().required("Source is required"),
-  })
-  .required();
-
-export const LEXSchema = baseSchema
-  .shape({
-    linkedin: yup.string().required("Linkedin is required"),
-  })
-  .required();

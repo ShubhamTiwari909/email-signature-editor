@@ -8,7 +8,7 @@ const InputGroup = ({
   handleKeyUp,
   onFocus,
   error,
-}: InputGroupTypes) => {
+}: InputTypes) => {
   return (
     <div className="min-w-96 flex justify-between items-start gap-10">
       <label htmlFor="">{label}</label>
