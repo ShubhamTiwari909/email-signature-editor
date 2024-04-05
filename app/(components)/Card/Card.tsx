@@ -1,13 +1,14 @@
+import { Card, CardContent, CardDescription } from "@/components/ui/card";
 import Link from "next/link";
 import React from "react";
 
-const Card = () => {
+const BrandCard = () => {
   return (
     <section className="container mx-auto flex justify-center py-20">
       <div className="flex flex-wrap gap-10">
-        <div className="flex justify-center items-center">
-          <div className="w-fit shadow-xl rounded-2xl p-6 border">
-            <div className="flex justify-between gap-x-6 items-center">
+        <Card className="flex justify-center items-center">
+          <CardContent className="w-fit shadow-xl rounded-2xl p-10 border">
+            <CardDescription className="flex justify-between gap-x-10 items-center">
               <img
                 src="https://assets.wellreceived.com/wellreceived/website/images/desktop/logos/wellreceived-logo.svg"
                 alt="Well received logo"
@@ -21,12 +22,12 @@ const Card = () => {
               >
                 Explore
               </Link>
-            </div>
-          </div>
-        </div>
-        <div className="flex justify-center items-center">
-          <div className="bg-slate-900 w-fit shadow-xl rounded-2xl p-6 border">
-            <div className="flex justify-between gap-x-6 items-center">
+            </CardDescription>
+          </CardContent>
+        </Card>
+        <Card className="flex justify-center items-center">
+          <CardContent className="bg-slate-900 w-fit shadow-xl rounded-2xl p-10 border">
+            <CardDescription className="flex justify-between gap-x-10 items-center">
               <img
                 src="https://assets.serviceforge.com/serviceforge/ca/mailtemplate/images/sf-logo-white.png"
                 alt="Well received logo"
@@ -40,31 +41,12 @@ const Card = () => {
               >
                 Explore
               </Link>
-            </div>
-          </div>
-        </div>
-        <div className="flex justify-center items-center">
-          <div className="bg-blue-900 w-fit shadow-xl rounded-2xl p-6 border">
-            <div className="flex justify-between gap-x-6 items-center">
-              <img
-                src="https://assets.lexreception.com/lexreception/images/logos/lex-logo-primary.svg"
-                alt="Lex US logo"
-                width="200"
-                height="24"
-                className="rounded-2xl h-[24px] max-w-[200px]"
-              />
-              <Link
-                href="/signatures/lex"
-                className="px-8 py-4 w-full flex-1 border bg-blue-500 text-white border-slate-900 rounded-lg hover:shadow-2xl hover:bg-slate-100 hover:text-blue-600 hover:border-blue-600 shadow-lg"
-              >
-                Explore
-              </Link>
-            </div>
-          </div>
-        </div>
+            </CardDescription>
+          </CardContent>
+        </Card>
       </div>
     </section>
   );
 };
 
-export default Card;
+export default BrandCard;
