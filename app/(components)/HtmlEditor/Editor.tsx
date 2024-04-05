@@ -12,7 +12,6 @@ const Editor = ({
   htmlContent: string;
   handleChange: (value: string) => void;
 }) => {
-
   return (
     <AceEditor
       mode="html"
