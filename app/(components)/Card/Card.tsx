@@ -4,7 +4,7 @@ import React from "react";
 
 const BrandCard = () => {
   return (
-    <section className="flex justify-center py-20">
+    <section className="container mx-auto flex justify-center py-20">
       <div className="flex flex-wrap gap-10">
         <Card className="flex justify-center items-center">
           <CardContent className="w-fit shadow-xl rounded-2xl p-10 border">

@@ -27,6 +27,15 @@ type initialData = {
     image: string;
     source: string;
   };
+  lexus: {
+    name: string;
+    position: string;
+    email: string;
+    phone: string;
+    bookingLink: string;
+    image: string;
+    linkedin: string;
+  };
   [key: string]: Brands;
 };
 
@@ -58,7 +67,17 @@ export const initialData: initialData = {
     image:
       "https://storage.googleapis.com/email_signatures/wellreceived/images/wr-hand-profile.png",
     source: "trustpilot",
-  }
+  },
+  lexus: {
+    name: "Jack Allan",
+    position: "Mattering & Impact Graduate Associate",
+    email: "jack.allan@anywhere.co",
+    phone: "44 7480 803859",
+    bookingLink: "https://anywhere.setmore.com/jack-allan",
+    image:
+      "https://storage.googleapis.com/email_signatures/LexReception/images/jack-allan.png",
+    linkedin: "https://www.linkedin.com/in/jackallan/",
+  },
 };
 
 type SignatureStoreTypes = {
@@ -83,6 +102,7 @@ export const useSignatureStore = create<SignatureStoreTypes>()((set) => ({
     bookingLink: "",
     image: "",
     source: "",
+    linkedin:""
   },
   isLinkedIn: false,
   isFormValid: false,

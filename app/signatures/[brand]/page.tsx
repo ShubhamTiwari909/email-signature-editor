@@ -10,17 +10,19 @@ import {
   ServiceForgeCaSignature,
   ServiceForgeUSSignature,
 } from "@/app/SignatureHTML/ServiceForgeSignature";
+import LEXSignature from "@/app/SignatureHTML/LEXSignature";
 
 // ADD SIGNATURES INPUT FIELD ARRAY HERE
-import { InputTypes, WR } from "@/store/types";
+import { InputTypes, WR, LEX } from "@/store/types";
 import { WRInputs } from "@/FormFields/WR";
 import { SFInputs } from "@/FormFields/SF";
+import { LEXInputs } from "@/FormFields/LEX";
+
 import Link from "next/link";
 
 const Brand = ({ params }: { params: { brand: string } }) => {
-  const { data, setData, region, setInputFocus } = useSignatureStore(
-    (state) => state
-  );
+  const { data, setData, region, setInputFocus, isLinkedIn } =
+    useSignatureStore((state) => state);
   const [pageData, setPageData] = useState({
     htmlContent: "" as string,
     inputFields: [] as InputTypes[],
@@ -49,6 +51,14 @@ const Brand = ({ params }: { params: { brand: string } }) => {
         data: ServiceForgeCaSignature(data),
         inputFields: SFInputs,
       },
+      {
+        brandName: "lex",
+        region: "us",
+        data: LEXSignature(data as LEX, isLinkedIn),
+        inputFields: isLinkedIn
+          ? LEXInputs as InputTypes[]
+          : LEXInputs.filter((item) => item.registerName !== "linkedin") as InputTypes[],
+      },
       // Add other brands config here
     ];
 
@@ -67,7 +77,7 @@ const Brand = ({ params }: { params: { brand: string } }) => {
   useEffect(() => {
     const { htmlContent, inputFields } = getSignatureHtml(params.brand);
     setPageData({ htmlContent, inputFields: inputFields as InputTypes[] });
-  }, [region, data]);
+  }, [region, data, isLinkedIn]);
 
   /**
    * Handles the click event when it occurs outside of any input element.
@@ -81,7 +91,7 @@ const Brand = ({ params }: { params: { brand: string } }) => {
   useEffect(() => {
     document.addEventListener("click", (event) => {
       if (event.target instanceof HTMLInputElement) setInputFocus(true);
-      else handleOutsideClick(event)
+      else handleOutsideClick(event);
     });
     return () => {
       document.removeEventListener("click", handleOutsideClick);

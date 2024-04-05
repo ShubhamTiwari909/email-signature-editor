@@ -3,7 +3,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Brands, InputTypes, RegisterNameTypes } from "@/store/types";
 import InputGroup from "./InputGroup";
-import { baseSchema, WRSchema } from "@/store/schema";
+import { baseSchema, LEXSchema, WRSchema } from "@/store/schema";
 import { usePathname } from "next/navigation";
 import { initialData, useSignatureStore } from "@/store/store";
 import RadioInputList from "./RadioInputList";
@@ -17,8 +17,16 @@ const SignatureForm = ({
   inputFields: InputTypes[] | undefined;
 }) => {
   // Global state and setter method from the store
-  const { data, setData, region, setRegion, setIsFormValid, setInputFocus } =
-    useSignatureStore((state) => state);
+  const {
+    data,
+    setData,
+    region,
+    setRegion,
+    setIsFormValid,
+    setInputFocus,
+    isLinkedIn,
+    setIsLinkedIn,
+  } = useSignatureStore((state) => state);
 
   const brandsWithRegions = ["sf", "ac", "lex", "af"];
 
@@ -35,6 +43,8 @@ const SignatureForm = ({
         return baseSchema;
       case "/signatures/wr":
         return WRSchema;
+      case "/signatures/lex":
+        return LEXSchema;
       default:
         return baseSchema; // You can define a default schema if needed
     }
@@ -76,7 +86,7 @@ const SignatureForm = ({
    */
   const handleKeyUp = (
     event: React.KeyboardEvent<HTMLInputElement>,
-    registerName: RegisterNameTypes
+    registerName: any
   ) => {
     // Update the field value on keyup
     const updatedValue = event.currentTarget.value; // Get the updated value from the input field
@@ -161,11 +171,11 @@ const SignatureForm = ({
         {inputFields?.map(({ label, type, registerName }: InputTypes) => {
           return (
             <InputGroup
-              key={registerName}
+              key={registerName as RegisterNameTypes}
               label={label}
               type={type}
               register={register}
-              registerName={registerName}
+              registerName={registerName as RegisterNameTypes}
               error={errors?.[registerName as keyof typeof errors]?.message}
               handleKeyUp={(e) =>
                 handleKeyUp(e, registerName as RegisterNameTypes)
@@ -196,6 +206,18 @@ const SignatureForm = ({
                 </label>
               );
             })}
+          </div>
+        ) : null}
+        {pathname === "/signatures/lex" ? (
+          <div>
+            <label htmlFor="linkedin">
+              LinkedIn
+              <input
+                type="checkbox"
+                id="linkedin"
+                onChange={() => setIsLinkedIn(!isLinkedIn)}
+              />
+            </label>
           </div>
         ) : null}
         {pathname === "/signatures/wr" ? (
