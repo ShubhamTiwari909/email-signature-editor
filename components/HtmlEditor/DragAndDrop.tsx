@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
+import { injectScriptToTemplate } from "@/lib/utils";
 
 type DragAndDrop = {
   fileName: string;
@@ -21,8 +22,8 @@ const DragAndDrop = ({
       const reader = new FileReader();
       reader.onload = () => {
         const content = reader.result as string;
-        setHtmlContent(content);
-        setIframeContent(content);
+        setHtmlContent(injectScriptToTemplate(content));
+        setIframeContent(injectScriptToTemplate(content));
         setFileName(file.name);
       };
       reader.readAsText(file);

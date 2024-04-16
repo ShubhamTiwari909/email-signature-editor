@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import AceEditor from "react-ace";
 import "ace-builds/src-noconflict/theme-twilight";
 import "ace-builds/src-noconflict/mode-html";
@@ -33,7 +34,7 @@ const Editor = ({
         tabSize: 2,
       }}
       style={{
-        width: "600px",
+        width: "550px",
         height: "500px",
       }}
     />
