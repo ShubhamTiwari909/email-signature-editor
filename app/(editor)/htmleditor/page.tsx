@@ -4,9 +4,9 @@ import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
 import InitialTemplate from "../InitialTemplate";
 import pretty from "pretty";
-import DragAndDrop from "@/app/(components)/HtmlEditor/DragAndDrop";
-import Editor from "@/app/(components)/HtmlEditor/Editor";
-import Preview from "@/app/(components)/HtmlEditor/Preview";
+import DragAndDrop from "@/components/HtmlEditor/DragAndDrop";
+import Editor from "@/components/HtmlEditor/Editor";
+import Preview from "@/components/HtmlEditor/Preview";
 import { injectScriptToTemplate } from "@/lib/utils";
 
 import { Button } from "@/components/ui/button";
@@ -35,7 +35,7 @@ const HTMLFileEditor: React.FC = () => {
     } else {
       setHtmlMarkUp(injectScriptToTemplate(InitialTemplate()));
     }
-    router.replace("/signatures/htmleditor");
+    router.replace("/htmleditor");
   }, []);
 
   const handleChange = (value: string) => {
@@ -46,9 +46,6 @@ const HTMLFileEditor: React.FC = () => {
   return (
     <section className="container mx-auto pb-10">
       <div className="py-4">
-        <Button variant="primary" className="absolute top-2 left-2">
-          <Link href="/">Back to homepage</Link>
-        </Button>
         <h1 className="text-center flex-1 text-3xl font-bold">
           Tailwind CSS EDITOR
         </h1>

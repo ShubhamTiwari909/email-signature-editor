@@ -33,7 +33,7 @@ const Preview = ({
   }, [iframeContent]);
 
   return (
-    <Card className="w-[768px]">
+    <Card className="w-[780px]">
       <div className="flex justify-end pr-4">
         <button onClick={() => setMobile(!mobile)}>
           {mobile ? "Tablet" : "Mobile"}
@@ -44,7 +44,7 @@ const Preview = ({
         ref={iframeRef}
         srcDoc={iframeContent}
         className={`border border-sky-400 w-[${
-          mobile ? "375px" : "768px"
+          mobile ? "375px" : "780px"
         }] h-96 mb-4 bg-white rounded-lg overflow-hidden`}
       />
       <DownloadButton

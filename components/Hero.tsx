@@ -9,8 +9,7 @@ const Home = () => {
             TailwindCSS Editor
           </h1>
           <p className="text-xl lg:text-2xl mt-6 font-light">
-            Create professional-looking email signatures with ease and 
-            elevate your online presence
+            Checkout out our tailwind componenets or create one using our tailwind editor.
           </p>
         </div>
         <div className="lg:w-1/2">
