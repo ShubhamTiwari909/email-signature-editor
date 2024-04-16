@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
 import InitialTemplate from "../InitialTemplate";
 import pretty from "pretty";
@@ -9,12 +8,11 @@ import Editor from "@/components/HtmlEditor/Editor";
 import Preview from "@/components/HtmlEditor/Preview";
 import { injectScriptToTemplate } from "@/lib/utils";
 
-import { Button } from "@/components/ui/button";
 
 const HTMLFileEditor: React.FC = () => {
   const [htmlContent, setHtmlContent] = useState<string>("");
   const [iframeContent, setIframeContent] = useState<string>("");
-  const [fileName, setFileName] = useState<string>("");
+  const [fileName, setFileName] = useState<string>("File");
 
   const query = useSearchParams();
 
