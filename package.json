@@ -22,7 +22,7 @@
     "react": "^18",
     "react-ace": "^11.0.1",
     "react-dom": "^18",
-    "react-hook-form": "^7.50.1",
+    "react-hook-form": "^7.51.2",
     "react-syntax-highlighter": "^15.5.0",
     "tailwind-merge": "^2.2.2",
     "tailwindcss-animate": "^1.0.7",
